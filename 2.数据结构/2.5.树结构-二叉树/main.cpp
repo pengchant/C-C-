@@ -58,7 +58,7 @@ void AddTreeNode(CBTType* treeNode){
         pnode->left = NULL;
         pnode->right = NULL;
 
-        cout<<"输入该结点的父节点数据"<<endl;
+        cout<<"输入该结点的父节点数据:";
         cin>>data;
         parent = TreeFindNode(treeNode,data);
         if(!parent){
@@ -139,7 +139,7 @@ void ClearTree(CBTType* treeNode){
 
 // 显示结点的数据
 void TreeNodeData(CBTType* p){
-    cout<<p->data<<" ";
+    cout<<p->data<<" ";  
 }
 
 // 按层次遍历算法(用到了循环队列,队列为空的条件为tail==head)
@@ -214,6 +214,7 @@ int main(){
                 break;
             default:;
         }
+        system("pause");
     }while(menusel!='0');
 
     // 遍历
@@ -251,6 +252,7 @@ int main(){
             default:
                 break;
         }
+        system("pause");
     }while(menusel!='0');
 
     // 深度
