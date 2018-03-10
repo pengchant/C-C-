@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "*.wpy": "vue",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "iostream": "cpp",
+        "xiosbase": "cpp"
+    }
+}
