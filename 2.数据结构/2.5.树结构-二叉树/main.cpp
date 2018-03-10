@@ -53,7 +53,7 @@ void AddTreeNode(CBTType* treeNode){
     char menusel;
 
     if(pnode=(CBTType*)malloc(sizeof(CBTType))){
-        cout<<"输入二叉树结点数据:"<<endl;
+        cout<<"输入二叉树结点数据:";
         cin>>pnode->data;
         pnode->left = NULL;
         pnode->right = NULL;
@@ -66,18 +66,18 @@ void AddTreeNode(CBTType* treeNode){
             free(pnode);
             return;
         } 
-        do{
+       do{
             cout<<"1.添加到该结点的左子树,2.添加到该结点的右子树:";
             cin>>menusel;
             switch(menusel){
-                case 1:
+                case '1':
                     if(parent->left){
                         cout<<"左子树结点不为空，无法添加到该结点的左子树上!"<<endl;
                     }else{
                         parent->left = pnode;
                     }                    
                     break;
-                case 2:
+                case '2':
                     if(parent->right){
                         cout<<"右子树的结点不能为空，无法添加到该结点的右子树上!"<<endl;                        
                     }else{
@@ -87,7 +87,7 @@ void AddTreeNode(CBTType* treeNode){
                 default:
                     cout<<"无效的参数"<<endl;
             }
-        }while(menusel!=1 && menusel!=2);
+       }while(menusel!='1'&&menusel!='2');
     }
 }
 
@@ -139,7 +139,7 @@ void ClearTree(CBTType* treeNode){
 
 // 显示结点的数据
 void TreeNodeData(CBTType* p){
-    cout<<p->data<<endl;
+    cout<<p->data<<" ";
 }
 
 // 按层次遍历算法(用到了循环队列,队列为空的条件为tail==head)
@@ -161,7 +161,7 @@ void LevelTree(CBTType* treeNode){
             q[tail] = p->left;
         }
         if(p->right){
-            tail = (taile+1)%MANLEN;
+            tail = (tail+1)%MANLEN;
             q[tail] = p->right;
         }
     }
@@ -195,6 +195,69 @@ void LRDTree(CBTType* treeNode){
 }
 
 int main(){
+    CBTType* root = NULL;
+    char menusel;
+    root = InitTree();
+    do{
+        cout<<endl;
+        cout<<"-----添加二叉树菜单------"<<endl;
+        cout<<"0.退出"<<endl;
+        cout<<"1.添加二叉树的结点"<<endl;
+        cout<<"------------------------"<<endl;
+        cout<<endl;
+        cin>>menusel;
+        switch(menusel){
+            case '1':
+                AddTreeNode(root);
+                break;
+            case '0':
+                break;
+            default:;
+        }
+    }while(menusel!='0');
 
+    // 遍历
+    do{
+        cout<<endl;
+        cout<<"请选择遍历二叉树，输入0表示退出:"<<endl;
+        cout<<"1.先序遍历"<<endl;
+        cout<<"2.中序遍历"<<endl;
+        cout<<"3.后序遍历"<<endl;
+        cout<<"4.按层遍历"<<endl;
+        cin>>menusel;
+        switch(menusel){
+            case '0':
+                break;
+            case '1':
+                cout<<"先序遍历结果"<<endl;
+                DLRTree(root);
+                cout<<endl;
+                break;
+            case '2':
+                cout<<"中序遍历结果"<<endl;
+                LDRTree(root);
+                cout<<endl;
+                break;
+            case '3':
+                cout<<"后序遍历结果"<<endl;
+                LRDTree(root);
+                cout<<endl;
+                break;
+            case '4':
+                cout<<"按層遍历结果:"<<endl;
+                LevelTree(root);
+                cout<<endl;
+                break;
+            default:
+                break;
+        }
+    }while(menusel!='0');
+
+    // 深度
+    cout<<"二叉树深度为："<<TreeDepth(root);
+    
+    // 清空
+    ClearTree(root);
+    root = NULL;
     return 0;
 }
