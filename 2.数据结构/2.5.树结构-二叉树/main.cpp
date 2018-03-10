@@ -258,7 +258,7 @@ int main(){
     // 深度
     cout<<"二叉树深度为："<<TreeDepth(root);
     
-    // 清空
+    // 清空1
     ClearTree(root);
     root = NULL;
     return 0;
